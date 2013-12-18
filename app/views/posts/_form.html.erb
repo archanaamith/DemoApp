@@ -1,0 +1,35 @@
+<%= form_for(@post, :html => { :multipart => true, :class => "form-horizontal" }) do |p| %>
+
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+     <h4> <%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h4>
+
+      <ul font color="red">
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p style="font-family:arial;color:red;font-size:15px;" >Select  from the categories below or
+  <a href="/categories/new" target="_blank">Create a New Category</a></p>
+  <% for category in Category.find(:all) %>
+    <div>
+      <p><%= check_box_tag "post[category_ids][]", category.id, @post.categories.include?(category) %>
+      <%= category.name %>
+      </p>
+    </div>
+  <% end %>
+
+  <p>
+     <%= p.label :title %>
+     <%= p.text_field :title %>
+  </p>
+  <p>
+     <%= p.label :body %>
+     <%= p.text_field :body %>
+  </p>
+  
+  <%= p.submit "Submit", :class => "btn btn-success", :id => "submit-button" %>
+<% end %>

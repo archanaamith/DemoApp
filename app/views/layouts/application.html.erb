@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="bulletinApp">
+<head>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+  <![endif]-->
+  <title>DemoApp</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <%= javascript_include_tag "angular.js" %>
+  <%= javascript_include_tag "angular-resource-1.0.0rc3.min" %>
+  <%= javascript_include_tag "angular-route.min"%>
+
+  <%= javascript_include_tag "bulletin" %>
+  <%= csrf_meta_tags %>
+
+  <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+
+</head>
+<body onLoad=initMap();>
+
+
+<div   class="container">
+  <% if notice %>
+      <p class="alert alert-notice"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
+  <% end %>
+  <p class="navbar-text pull-right">
+    <% if user_signed_in? %>
+        Logged in as <strong><%= current_user.email %></strong>.
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+    <% else %>
+        <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+    <% end %>
+    </p>
+<%= yield %>
+  <div id="map" align="center" style="color: #0900C4;border: 1px solid black;width:500px;height:400px;"></div>
+
+</div>
+</body>
+</html>

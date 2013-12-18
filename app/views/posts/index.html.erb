@@ -1,0 +1,32 @@
+
+<div ng-controller="PostsCtrl">
+<h3 style="text-align:center;">
+	{{heading}}
+</h3>
+<%= yield %>
+<table class = "table table-bordered" width="50%">
+	<tr>
+		<th>No.</th>
+		<th>Title</th>
+		<th>Comments</th>
+		<th align="center">Actions</th>
+	</tr>
+	<% @posts.each_with_index do |post,index| %>
+	<tr >
+		<td><%= index+1 %></td>
+		<td ><font-color="green"><%= post.title %></td></font><td><%= post.body %></td>
+		<td> <a href = "/posts/<%= post.id%>/edit" > Edit </a></td>
+		<td><%= link_to 'Delete' ,post, :method => :delete, :confirm=> "Are you sure you want to delete this post?" %></td>
+	</tr>
+	<% end %>
+</table>
+  <ul>
+    <li ng-repeat="post in posts">
+      <p>{{post.title}}</p>
+      <p>{{post.body}}</p>
+    </li>
+  </ul>
+
+	<p><%= link_to 'Create a new post'	,new_post_path(@post) %></p>
+	<p><a href="/">Back to Home</a></p>
+</div>

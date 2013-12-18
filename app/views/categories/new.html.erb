@@ -1,0 +1,21 @@
+<h3 style = "text-align: center;">
+    Creating a new Category
+</h3>
+<% if @category.errors.any? %>
+    <div id="error_explanation">
+     
+     <ul font color="red">
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form_for(@category, :html => {:class => "form-horizontal" }) do |f| %>
+    <p>
+         <%= f.label :name %>
+         <%= f.text_field :name %>
+    </p>
+    <%= f.submit "Create Category", :class => "btn btn-success" %>
+<% end %>
