@@ -14,9 +14,9 @@
 //= require jquery_ujs
 
 
-var lon = 77.58;
-var lat = 12.98;
-var zoom = 15;
+var lon = -77.03;
+var lat = 38.89;
+var zoom = 10;
 var maxZoom = 18;
 //var popup;
 var feature;
@@ -25,7 +25,7 @@ var map;
 // var markers = null;
 
 function initMap(){
-    map = L.map('map').setView([lat,lon], 15);
+    map = L.map('map').setView([lat,lon], 13);
     L.tileLayer('http://{s}.tile.cloudmade.com/e8f52063035f47b1a46eb4cb6d108778/997/256/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
         maxZoom: 18
@@ -39,7 +39,7 @@ function initMap(){
         fillOpacity: 0.5
     }).addTo(map);
 
-    marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+    marker.bindPopup("<b>Hello!!!</b>").openPopup();
     circle.bindPopup("I am a circle.");
     var popup = L.popup();
 
